@@ -1,46 +1,64 @@
-import React from 'react'
+import React, {useState} from "react";
 
-import {SafeAreaView, View, Text, StyleSheet, TextInput} from 'react-native'
+import { SafeAreaView, View, Text, StyleSheet, TextInput } from 'react-native';
 
-export const App = () => {
+export const App = () =>{
 
-  const [text, onChangeText] = React.useState("Useless Text");
+  const [NameText, setNameText] = useState('')
+  const [NameAge, setNameAge] = useState('')
 
-  return (
+  const nameUpdate = (text)=>{
+    console.log('val', text)
+    setNameText(text)
+  }
 
-      <View styles={{backgroundColor: 'lightgreen', flex: 1}}>
-        <Text styles={styles.title}>Top</Text>
-        <Text styles={styles.title}>Middle</Text>
-        <Text styles={styles.title}>Bottom</Text>
-        <Text styles={styles.title}>Below Bottom</Text>
+  const ageUpdate = (Age)=>{
+    console.log('val', Age)
+    setNameAge(Age)
+  }
 
-        <TextInput
+return (
+<SafeAreaView style={styles.mainContainer}>
+<View style={styles.container}>
+<Text style={styles.Title}>My Name is: {NameText}</Text>
+<TextInput
         style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
-        />
-      </View>
+        onChangeText={nameUpdate}
+        value={NameText}
+      />
+<Text style={styles.Title}>My Age: {NameAge}</Text>
 
-  );
+<TextInput
+        style={styles.input}
+        onChangeText={ageUpdate}
+        value={NameAge}
+      />
 
+</View>
+
+</SafeAreaView>
+);
 };
 
 const styles = StyleSheet.create({
-
-  mainContainer: {
-    flex : 1   
+  mainContainer:{
+    flex:1,
   },
 
-  container: {
-    flex : 1,
-    justifyContent: 'space-between', 
-    alignItems: 'center',   
-    backgroundColor: 'yellow'
+  container:{
+    backgroundColor:'yellow',
+    flex: 1,
   },
 
-  title: {
-    fontSize: 40, 
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   },
-
-
+  
+  Title:{
+    fontSize:30,
+    color:'#4d4d4d',
+  }
 });
